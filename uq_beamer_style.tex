@@ -1,0 +1,137 @@
+% Engine-specific settings
+% Detect pdftex/xetex/luatex, and load appropriate font packages.
+% This is inspired by the approach in the iftex package.
+% pdftex:
+\expandafter\ifx\csname pdfmatch\endcsname\relax
+\else
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+\fi
+% xetex:
+\expandafter\ifx\csname XeTeXinterchartoks\endcsname\relax
+\else
+    \usepackage{fontspec}
+    \defaultfontfeatures{Ligatures=TeX}
+\fi
+% luatex:
+\expandafter\ifx\csname directlua\endcsname\relax
+\else
+    \usepackage{fontspec}
+\fi
+% End engine-specific settings
+
+%%%%%%%%%%
+% Colors %
+%%%%%%%%%%
+
+%\RequirePackage{xcolor}
+\definecolor{white}{RGB}{255,255,255}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{gray}{HTML}{4D4D4D}
+\definecolor{lightgray}{HTML}{CCCCCC}
+
+\definecolor{green}{HTML}{C2E15F}
+\definecolor{orange}{HTML}{FDA333}
+\definecolor{purple}{HTML}{D3A4F9}
+\definecolor{lightred}{HTML}{FB4485}
+\definecolor{red}{RGB}{255,0,0}
+\definecolor{lightblue}{HTML}{6CE0F1}
+\definecolor{blue}{RGB}{0,0,255}
+\definecolor{mathcolor}{RGB}{0,0,0}
+\definecolor{titlecolor}{HTML}{333333}
+\definecolor{subtitlecolor}{HTML}{CCCCCC}
+\definecolor{blockcolor}{RGB}{255,255,255}
+\definecolor{toccolor}{HTML}{333333}
+
+
+%\definecolor{alertblockcolor}{HTML}{970026}
+\definecolor{alertblockcolor}{HTML}{E9003A}
+\definecolor{exampleblockcolor}{RGB}{32,126,98}
+
+\colorlet{textcolor}{darkgray}
+\colorlet{headercolor}{white}
+
+%%%%%%%%%
+% Fonts %
+%%%%%%%%%
+
+\usefonttheme{professionalfonts}
+
+\newfontfamily\subtitlefont[Color=black]{Helvetica Neue}
+\newfontfamily\bodyfont[]{Helvetica Neue}
+\newfontfamily\framesubtitlefont[Color=white]{Helvetica Neue Light}
+\newfontfamily\thinfont[]{Helvetica Neue UltraLight}
+\newfontfamily\headingfont[Color=headercolor]{Helvetica Neue Condensed Bold}
+
+%\setbeamercolor{math text}{fg=mathcolor}
+%\setbeamercolor{math text displayed}{fg=mathcolor}
+
+\setbeamercolor{frametitle}{fg=darkgray,bg=white}
+\setbeamercolor{footlinecolor1}{fg=white,bg=darkgray}
+\setbeamercolor{footlinecolor2}{fg=black,bg=lightgray}
+
+\setbeamercolor{title}{fg=white,bg=darkgray}
+\setbeamercolor{subtitle}{fg=lightgray}
+\setbeamercolor{author}{fg=darkgray}
+\setbeamercolor{institute}{fg=gray}
+
+\setbeamercolor{block title}{fg=darkgray}
+\setbeamercolor{block title alerted}{fg=darkgray}
+\setbeamercolor{alerted text}{fg=alertblockcolor}
+\setbeamercolor{block title example}{fg=exampleblockcolor}
+\setbeamercolor{normal text}{fg=darkgray}
+
+%\setbeamercolor{itemize/enumerate body}{fg=gray}
+%\setbeamerfont{itemize/enumerate subbody}{fg=gray, shape=\itshape}
+
+\defaultfontfeatures{Mapping=tex-text}
+%\setsansfont[Mapping=tex-text]{Helvetica Neue}
+\setmonofont[Mapping=tex-text]{Courier}
+
+% Beamer Customization
+\usetheme{Darmstadt}
+\setbeamertemplate{frametitle}[default][colsep=-4bp,rounded=false,shadow=false]
+
+\setbeamercolor{section in head/foot}{fg=white, bg=toccolor}
+\setbeamercolor{subsection in head/foot}{fg=black, bg=lightgray}
+\setbeamercolor{structure}{fg=darkgray}
+\setbeamercolor{frametitle right}{bg=white}
+
+\defbeamertemplate*{footline}{shadow theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=4.5ex,dp=1.125ex,leftskip=0cm plus1fil,rightskip=.3cm]{footlinecolor1}%
+\vspace{-0.25ex}\includegraphics[width=4cm]{uqLab_logo.png}	
+	  \end{beamercolorbox}%
+  
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=4.5ex,dp=1.125ex,leftskip=0cm,rightskip=.3cm plus1fil]{footlinecolor2}%
+    \usebeamerfont{title in head/foot} \vspace{.4ex}\event \hfill \insertframenumber\,/\,\inserttotalframenumber%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+\setbeamertemplate{navigation symbols}{}
+
+% Fonts
+\renewcommand\mathfamilydefault{\rmdefault}
+\setbeamerfont{frametitle}{family=\headingfont,size=\LARGE}
+\setbeamerfont{framesubtitle}{family=\framesubtitlefont,series=\itshape}
+%
+\setbeamerfont{title}{size=\LARGE,family=\headingfont}
+\setbeamerfont{author}{size=\large,series=\bfseries}
+
+\setbeamerfont{subtitle}{size=\normalsize,family=\subtitlefont}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamerfont{subsection in head/foot}{series=\itshape}
+%\setbeamerfont{section in head/foot}{family=\bodyfont}
+
+
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{itemize items}[square]
+\setbeamertemplate{itemize subitem}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+
+
+% Customize the TOC in Nagvigation
+\useoutertheme[subsection=false]{miniframes}
+
